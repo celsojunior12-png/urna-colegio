@@ -71,6 +71,7 @@ body {
     font-size: clamp(1.65rem, 4vw, 2.4rem);
     line-height: 1.1;
     margin-bottom: 7px;
+    font-display: flex;
 }
 
 .title-area p {
