@@ -62,6 +62,8 @@ body {
 }
 
 .title-area {
+    flex:1;
+    text-align: center;
     border-left: 1px solid #dce5f0;
     padding-left: 24px;
 }
