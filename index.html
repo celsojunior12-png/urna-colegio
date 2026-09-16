@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urna Eletrônica Educacional | James Patrick Clark</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="logo-area">
+            <img src="logo.png" alt="Colégio Estadual James Patrick Clark" class="school-logo">
+        </div>
+        <div class="title-area">
+            <h1>Urna Eletrônica Educacional</h1>
+            <p>Simulador interativo de votação e apuração para fins pedagógicos</p>
+        </div>
+    </header>
+
+    <nav class="tabs" aria-label="Navegação da urna">
+        <button class="tab-btn active" onclick="switchTab('vota')">Votação</button>
+        <button class="tab-btn" onclick="switchTab('resultado')">Boletim de Urna</button>
+    </nav>
+
+    <main class="main-container">
+
+        <section id="tab-vota" class="urna-wrapper">
+            <div class="screen-container" id="screen"></div>
+
+            <div class="keypad-container">
+                <div class="keypad-title">Teclado de votação</div>
+
+                <div class="num-pad">
+                    <button class="btn-num" onclick="pressNum('1')">1</button>
+                    <button class="btn-num" onclick="pressNum('2')">2</button>
+                    <button class="btn-num" onclick="pressNum('3')">3</button>
+                    <button class="btn-num" onclick="pressNum('4')">4</button>
+                    <button class="btn-num" onclick="pressNum('5')">5</button>
+                    <button class="btn-num" onclick="pressNum('6')">6</button>
+                    <button class="btn-num" onclick="pressNum('7')">7</button>
+                    <button class="btn-num" onclick="pressNum('8')">8</button>
+                    <button class="btn-num" onclick="pressNum('9')">9</button>
+                    <button class="btn-num zero" onclick="pressNum('0')">0</button>
+                </div>
+
+                <div class="action-pad">
+                    <button class="btn-action btn-branco" onclick="pressBranco()">Branco</button>
+                    <button class="btn-action btn-corrige" onclick="pressCorrige()">Corrige</button>
+                    <button class="btn-action btn-confirma" onclick="pressConfirma()">Confirma</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="tab-resultado" class="result-container">
+            <div id="auth-screen" class="auth-card">
+                <div class="lock-icon">🔐</div>
+                <h2>Área Restrita</h2>
+                <p>Digite a senha administrativa para liberar o Boletim de Urna.</p>
+
+                <input
+                    type="password"
+                    id="admin-pass"
+                    class="auth-input"
+                    placeholder="Senha"
+                    maxlength="10"
+                    onkeyup="if(event.key === 'Enter') checkPassword()"
+                    aria-label="Senha administrativa"
+                >
+
+                <button class="auth-btn" onclick="checkPassword()">Acessar Resultado</button>
+                <div id="auth-error" class="auth-error">Senha incorreta. Tente novamente.</div>
+                <p class="password-note">Senha definida no arquivo <strong>script.js</strong>.</p>
+            </div>
+
+            <div id="boletim-screen" class="boletim-screen" style="display:none;">
+                <div class="boletim-header">
+                    <button class="logout-btn" onclick="lockResultado()">Bloquear Resultado</button>
+                    <img src="logo.png" alt="" class="boletim-logo">
+                    <h2>BOLETIM DE URNA (BU)</h2>
+                    <p>Relatório de Apuração da Seção Eleitoral Educacional</p>
+                </div>
+
+                <div class="stat-grid">
+                    <div class="stat-card">
+                        <div class="label">Total de Votos</div>
+                        <div class="value" id="stat-total">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="label">Votos Nominais</div>
+                        <div class="value" id="stat-validos">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="label">Votos de Legenda</div>
+                        <div class="value" id="stat-legenda">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="label">Votos em Branco</div>
+                        <div class="value" id="stat-brancos">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="label">Votos Nulos</div>
+                        <div class="value" id="stat-nulos">0</div>
+                    </div>
+                </div>
+
+                <div class="table-section">
+                    <h3>Votação por Candidato</h3>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Nº</th>
+                                    <th>Candidato</th>
+                                    <th>Partido</th>
+                                    <th>Votos Nominais</th>
+                                    <th>% dos Válidos</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-candidatos"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="table-section">
+                    <h3>Votação por Partido / Legenda</h3>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Nº</th>
+                                    <th>Partido</th>
+                                    <th>Votos de Legenda</th>
+                                    <th>Total do Partido</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-partidos"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <button class="reset-btn" onclick="resetVotacao()">Zerar Urna / Reiniciar Votação</button>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <strong>Colégio Estadual James Patrick Clark</strong>
+        <span>Projeto pedagógico — Simulação de votação</span>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
