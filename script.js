@@ -17,10 +17,10 @@ const candidatos = [
         numeroPartido: '10'
     },
     {
-        numero: '20',
-        nome: 'Bruno Costa',
-        partido: 'Partido do Futuro (PF)',
-        numeroPartido: '20'
+        numero: '22',
+        nome: 'Alx Rose',
+        partido: 'Sem Partido (SP)',
+        numeroPartido: '22'
     },
     {
         numero: '30',
@@ -32,7 +32,7 @@ const candidatos = [
 
 const partidos = [
     { numero: '10', nome: 'Partido da Inovação (PI)' },
-    { numero: '20', nome: 'Partido do Futuro (PF)' },
+    { numero: '22', nome: 'Sem Partio (SP)' },
     { numero: '30', nome: 'Partido da Educação (PE)' }
 ];
 
@@ -41,8 +41,8 @@ let isBranco = false;
 let isFim = false;
 
 const votosPadrao = {
-    candidatos: { '10': 0, '20': 0, '30': 0 },
-    legenda: { '10': 0, '20': 0, '30': 0 },
+    candidatos: { '10': 0, '22': 0, '30': 0 },
+    legenda: { '10': 0, '22': 0, '30': 0 },
     brancos: 0,
     nulos: 0
 };
@@ -276,8 +276,8 @@ function resetVotacao() {
     }
 
     votos = {
-        candidatos: { '10': 0, '20': 0, '30': 0 },
-        legenda: { '10': 0, '20': 0, '30': 0 },
+        candidatos: { '10': 0, '22': 0, '30': 0 },
+        legenda: { '10': 0, '22': 0, '30': 0 },
         brancos: 0,
         nulos: 0
     };
